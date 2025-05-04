@@ -59,7 +59,7 @@ function App() {
                 <div className="upload-screen">
                     <div className="upload-content">
                         <header className="App-header">
-                            <h1>StructViz3D</h1>
+                            <h1>Skyciv</h1>
                             <p>Upload and view your structural engineering models in 3D</p>
                         </header>
 
