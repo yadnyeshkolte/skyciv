@@ -296,7 +296,7 @@ body, html {
     display: flex;
     align-items: center;
     gap: 8px;
-    background: rgba(33, 33, 33, 0.75);
+    background: #4285F4;
     color: white;
     border: none;
     border-radius: 8px;
@@ -452,7 +452,6 @@ body, html {
 }
 
 .dropzone {
-    border-radius: 4px;
     padding: 12px 20px;
     text-align: center;
     transition: all 0.3s ease;
@@ -479,6 +478,15 @@ body, html {
     gap: 8px;
     min-height: 10px;
 }
+
+.new-upload-button {
+    top: 10px;
+    left: 10px;
+    color: #4285F4;
+    background-color: rgba(102, 102, 102, 1);
+
+}
+
 
 .upload-icon {
     color: white;
@@ -583,6 +591,8 @@ body, html {
     .new-upload-button {
         top: 10px;
         left: 10px;
+        color: white;
+        background-color: #2563EB;
     }
 
     .back-button {

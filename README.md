@@ -49,8 +49,8 @@ SkyCiv is a powerful cloud-based structural engineering software suite. For this
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/skyciv-model-viewer.git
-   cd skyciv-model-viewer
+   git clone https://github.com/yadnyeshkolte/skyciv.git
+   cd skyciv
    ```
 
 2. Install dependencies:
@@ -95,17 +95,9 @@ VITE_APP_API_URL=https://your-backend-api-url.com
 - Export capabilities to various formats
 - Integration with SkyCiv's structural analysis tools
 
-## 📝 Hackathon Notes
-
-This project was created for the UI Hacks 2025 hackathon. The goal was to enhance an existing website with new functionality while maintaining its visual identity and user experience. The addition of an in-browser 3D model viewer addresses a real need for engineers and architects who want to quickly visualize their structural designs without specialized software.
-
 ## 📄 License
 
 MIT License
-
-## 👨‍💻 About Me
-
-I'm a full-stack developer passionate about creating tools that make complex technical tasks more accessible. This project combines my interest in 3D visualization, engineering, and web development.
 
 ## 🙏 Acknowledgements
 

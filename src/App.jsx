@@ -25,13 +25,15 @@ function App() {
     ];
 
     const handleModelLoad = (data) => {
-        data.bin_url = undefined;
-        data.download_url = undefined;
         setIsLoading(true);
 
         const apiBaseUrl = import.meta.env.VITE_APP_API_URL || '';
-        const modelUrl = `${apiBaseUrl}${data.download_url}`;
+        // Fix: Don't overwrite the data properties before using them
+        const modelUrl = data.download_url ? `${apiBaseUrl}${data.download_url}` : null;
         const binUrl = data.bin_url ? `${apiBaseUrl}${data.bin_url}` : null;
+
+        console.log('Loading model with URL:', modelUrl); // Debugging
+        console.log('Binary URL:', binUrl); // Debugging
 
         setModelUrl(modelUrl);
         setBinUrl(binUrl);
@@ -127,7 +129,7 @@ function App() {
                                     )}
                                 </div>
 
-                                <div className="hero-button">
+                                <div className="hero-button-upload">
                                     <FileUpload onModelLoad={handleModelLoad} />
                                 </div>
                             </div>

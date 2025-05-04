@@ -44,10 +44,18 @@ const FileUpload = ({ onModelLoad }) => {
                 }
             );
 
+            // Verify response data structure before passing to parent
+            console.log('Upload response:', response.data);
+
+            if (!response.data || (!response.data.download_url && !response.data.bin_url)) {
+                throw new Error('Invalid response format from server');
+            }
+
             // Call the parent component's handler with the response data
             onModelLoad(response.data);
         } catch (err) {
-            setError(err.response?.data?.detail || 'Upload failed. Please try again.');
+            console.error('Upload error:', err);
+            setError(err.response?.data?.detail || err.message || 'Upload failed. Please try again.');
         } finally {
             setUploading(false);
         }
@@ -59,13 +67,15 @@ const FileUpload = ({ onModelLoad }) => {
         <div className="upload-container">
             <div
                 {...getRootProps()}
-                className={`dropzone ${isDragActive ? 'active' : ''}`}
+                className={`skyciv-primary-btn-upload dropzone ${isDragActive ? 'active' : ''}`}
             >
                 <input {...getInputProps()} />
                 {uploading ? (
                     <div className="upload-progress">
-                        <div className="progress-bar" style={{ width: `${uploadProgress}%` }}></div>
                         <p className="upload-progress-text">Uploading: {uploadProgress}%</p>
+                        <div className="progress-container">
+                            <div className="progress-bar" style={{ width: `${uploadProgress}%` }}></div>
+                        </div>
                     </div>
                 ) : (
                     <div className="upload-content">
