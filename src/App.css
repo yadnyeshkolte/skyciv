@@ -36,7 +36,8 @@ body, html {
     justify-content: space-between;
     align-items: center;
     padding: 15px 40px;
-    background-color: rgba(0, 0, 0, 0.85);
+    background-color: rgba(50, 50, 50, 0.85);
+
     position: fixed;
     top: 0;
     left: 0;
@@ -46,6 +47,7 @@ body, html {
 
 .skyciv-logo img {
     height: 30px;
+    content: url('./assets/skyciv-logo.png'); /* Use content property as a fallback */
 }
 
 .skyciv-nav ul {
@@ -133,12 +135,9 @@ body, html {
     line-height: 1.5;
 }
 
-.hero-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 1.5rem;
-    margin-bottom: 3rem;
+.hero-button {
     position: relative;
+    display: inline-block;
 }
 
 .hero-button {
@@ -167,15 +166,14 @@ body, html {
 /* Sample Models Dropdown */
 .sample-dropdown-menu {
     position: absolute;
-    top: 100%;
+    top: calc(100% + 8px); /* Position below the button with a small gap */
     left: 0;
     width: 100%;
     min-width: 220px;
     color: #333;
     background-color: white;
     border-radius: 4px;
-    margin-top: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
     z-index: 10;
     max-height: 250px;
     overflow-y: auto;
@@ -263,13 +261,11 @@ body, html {
     -webkit-text-stroke: 1px #FF9800;
 }
 
-.upload-section-fullscreen {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.upload-section {
+    width: 100%; /* Full width of its container */
+    height: auto; /* Auto height */
+    margin-top: 0; /* Remove margin-top */
 }
-
 .App-footer {
     margin-top: 2rem;
     color: #666;
@@ -453,41 +449,37 @@ body, html {
 /* File Upload Styling (preserved from original) */
 .upload-container {
     width: 100%;
-    max-width: 600px;
-    margin: 0 auto;
 }
-
 .dropzone {
-    border: 3px dashed #ccc;
-    border-radius: 16px;
-    padding: 40px;
+    border: 2px dashed #ccc;
+    border-radius: 4px;
+    padding: 12px 24px;
     text-align: center;
     background-color: white;
     transition: all 0.3s ease;
     cursor: pointer;
-    min-height: 250px;
+    min-height: unset;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    height: 46px; /* Match the height of the Select Sample Model button */
 }
-
 .dropzone.active {
     border-color: #4285F4;
     background-color: rgba(66, 133, 244, 0.05);
 }
 
 .upload-icon {
-    margin-bottom: 16px;
-    color: #666;
+    display: none;
 }
 
 .upload-text {
-    font-size: 1.2rem;
-    color: #666;
-    margin-bottom: 12px;
+    font-size: 16px;
+    color: #333;
+    margin: 0;
+    font-weight: 600;
 }
-
 .progress-container {
     width: 100%;
     height: 20px;
@@ -541,8 +533,11 @@ body, html {
     }
 
     .hero-buttons {
-        flex-direction: column;
-        gap: 1rem;
+        display: flex;
+        justify-content: center;
+        gap: 1.5rem;
+        margin-bottom: 3rem;
+        align-items: flex-start; /* Align items at the top */
     }
 
     .features-section {

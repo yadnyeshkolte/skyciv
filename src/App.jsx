@@ -3,6 +3,8 @@ import './App.css';
 import FileUpload from './FileUpload';
 import ModelViewer from './ModelViewer';
 import { Upload, LayoutTemplate, ChevronDown, Cloud, Zap, Users } from 'lucide-react';
+// Import the logo
+import SkyCivLogo from './assets/skyciv-logo.png';
 
 function App() {
     const [modelUrl, setModelUrl] = useState(null);
@@ -55,6 +57,20 @@ function App() {
         setShowUploadScreen(true);
     };
 
+    // Close dropdown when clicking outside
+    React.useEffect(() => {
+        function handleClickOutside(event) {
+            if (showSampleDropdown && !event.target.closest('.hero-button')) {
+                setShowSampleDropdown(false);
+            }
+        }
+
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, [showSampleDropdown]);
+
     return (
         <div className="App">
             {showUploadScreen ? (
@@ -62,7 +78,7 @@ function App() {
                     {/* Header Navigation Bar */}
                     <header className="skyciv-header">
                         <div className="skyciv-logo">
-                            <img src="./assets/skyciv-logo.png" alt="SkyCiv Logo" />
+                            <img src={SkyCivLogo} alt="SkyCiv Logo" />
                         </div>
                         <nav className="skyciv-nav">
                             <ul>
@@ -112,9 +128,7 @@ function App() {
                                 </div>
 
                                 <div className="hero-button">
-                                    <div className="upload-section">
-                                        <FileUpload onModelLoad={handleModelLoad} />
-                                    </div>
+                                    <FileUpload onModelLoad={handleModelLoad} />
                                 </div>
                             </div>
                             {/* Features Section */}
