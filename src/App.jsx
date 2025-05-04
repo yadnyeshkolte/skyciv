@@ -162,7 +162,7 @@ function App() {
                 <div className="viewer-screen">
                     <div className="new-upload-button">
                         <button onClick={handleNewUpload} className="back-button" title="Upload new model">
-                            <Upload size={20} />
+                            <Upload size={10} />
                             <span>New Upload</span>
                         </button>
                     </div>

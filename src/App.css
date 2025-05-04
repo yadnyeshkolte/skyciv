@@ -291,12 +291,6 @@ body, html {
     overflow: hidden;
 }
 
-.new-upload-button {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    z-index: 1000;
-}
 
 .back-button {
     display: flex;
@@ -458,20 +452,18 @@ body, html {
 }
 
 .dropzone {
-    border: 2px solid #3B82F6;
     border-radius: 4px;
     padding: 12px 20px;
     text-align: center;
-    background-color: #3B82F6;
     transition: all 0.3s ease;
     cursor: pointer;
-    min-height: 44px; /* Match height of sample model button */
+    min-height: 10px; /* Match height of sample model button */
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    gap: 10px;
-    color: white;
+    gap: 80px;
+    color: #3B82F6;
 }
 
 .dropzone.active {
@@ -485,7 +477,7 @@ body, html {
     align-items: center;
     justify-content: center;
     gap: 8px;
-    min-height: auto;
+    min-height: 10px;
 }
 
 .upload-icon {
