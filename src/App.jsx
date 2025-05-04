@@ -36,7 +36,7 @@ function App() {
 
     const handleSampleModel = (fileName) => {
         setIsLoading(true);
-        setModelUrl(`https://raw.githubusercontent.com/yadnyeshkolte/skyciv/blob/main/stlfiles/${fileName}`);
+        setModelUrl(`https://raw.githubusercontent.com/yadnyeshkolte/skyciv/main/stlfiles/${fileName}`);
         setBinUrl(null);
         setShowUploadScreen(false);
         setShowSampleDropdown(false);
