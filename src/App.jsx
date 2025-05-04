@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './App.css';
 import FileUpload from './FileUpload';
 import ModelViewer from './ModelViewer';
-import { Upload, LayoutTemplate, ChevronDown } from 'lucide-react';
+import { Upload, LayoutTemplate, ChevronDown, Cloud, Zap, Users } from 'lucide-react';
 
 function App() {
     const [modelUrl, setModelUrl] = useState(null);
@@ -23,6 +23,8 @@ function App() {
     ];
 
     const handleModelLoad = (data) => {
+        data.bin_url = undefined;
+        data.download_url = undefined;
         setIsLoading(true);
 
         const apiBaseUrl = import.meta.env.VITE_APP_API_URL || '';
@@ -56,26 +58,43 @@ function App() {
     return (
         <div className="App">
             {showUploadScreen ? (
-                <div className="upload-screen">
-                    <div className="upload-content">
-                        <header className="App-header">
-                            <h1>Skyciv</h1>
-                            <p>Upload and view your structural engineering models in 3D</p>
-                        </header>
+                <div className="home-screen">
+                    {/* Header Navigation Bar */}
+                    <header className="skyciv-header">
+                        <div className="skyciv-logo">
+                            <img src="./assets/skyciv-logo.png" alt="SkyCiv Logo" />
+                        </div>
+                        <nav className="skyciv-nav">
+                            <ul>
+                                <li><a href="#">Products</a></li>
+                                <li><a href="#">Pricing</a></li>
+                                <li><a href="#">Tools</a></li>
+                                <li><a href="#">Resources</a></li>
+                                <li><a href="#">API</a></li>
+                                <li><a href="#">Login</a></li>
+                                <li>
+                                    <button className="sign-up-btn">SIGN UP</button>
+                                </li>
+                            </ul>
+                        </nav>
+                    </header>
 
-                        <div className="options-container">
-                            <div className="option-card">
-                                <div className="option-icon">
-                                    <LayoutTemplate size={48} />
-                                </div>
-                                <h2>Try Sample Models</h2>
-                                <p>Test the viewer with pre-loaded models</p>
-                                <div className="sample-selector">
-                                    <button
-                                        className="sample-dropdown-button"
-                                        onClick={toggleSampleDropdown}
-                                    >
-                                        Select a Model <ChevronDown size={16} />
+                    {/* Hero Section */}
+                    <div className="hero-section">
+                        <div className="hero-content">
+                            <h1>SkyCiv Structural Analysis Software</h1>
+                            <p className="hero-description">
+                                Powerful FEA structural analysis and design software.
+                                <br />
+                                Accessed directly from your browser.
+                            </p>
+
+                            {/* Two buttons for model selection and upload */}
+                            <div className="hero-buttons">
+                                <div className="hero-button">
+                                    <button className="skyciv-primary-btn" onClick={toggleSampleDropdown}>
+                                        Select Sample Model
+                                        <ChevronDown size={16} />
                                     </button>
                                     {showSampleDropdown && (
                                         <div className="sample-dropdown-menu">
@@ -91,20 +110,39 @@ function App() {
                                         </div>
                                     )}
                                 </div>
-                            </div>
 
-                            <div className="option-card">
-                                <div className="option-icon">
-                                    <Upload size={48} />
+                                <div className="hero-button">
+                                    <div className="upload-section">
+                                        <FileUpload onModelLoad={handleModelLoad} />
+                                    </div>
                                 </div>
-                                <h2>Upload Your Model</h2>
-                                <p>Upload your own STL file to view in 3D</p>
-                                <div className="upload-section">
-                                    <FileUpload onModelLoad={handleModelLoad} />
+                            </div>
+                            {/* Features Section */}
+                            <div className="features-section">
+                                <div className="feature">
+                                    <div className="feature-icon">
+                                        <Cloud size={48} />
+                                    </div>
+                                    <h3>No Installations</h3>
+                                </div>
+
+                                <div className="feature">
+                                    <div className="feature-icon">
+                                        <Zap size={48} />
+                                    </div>
+                                    <h3>Powerful Modeling</h3>
+                                </div>
+
+                                <div className="feature">
+                                    <div className="feature-icon">
+                                        <Users size={48} />
+                                    </div>
+                                    <h3>Easy Collaboration</h3>
                                 </div>
                             </div>
                         </div>
                     </div>
+
                 </div>
             ) : (
                 <div className="viewer-screen">
