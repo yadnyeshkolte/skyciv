@@ -36,7 +36,7 @@ function App() {
 
     const handleSampleModel = (fileName) => {
         setIsLoading(true);
-        setModelUrl(`https://raw.githubusercontent.com/yadnyeshkolte/structviz3d-react/stlfiles/${fileName}`);
+        setModelUrl(`https://raw.githubusercontent.com/yadnyeshkolte/skyciv/stlfiles/${fileName}`);
         setBinUrl(null);
         setShowUploadScreen(false);
         setShowSampleDropdown(false);
