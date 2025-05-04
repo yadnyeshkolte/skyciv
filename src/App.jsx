@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import FileUpload from './FileUpload';
 import ModelViewer from './ModelViewer';
@@ -58,7 +58,7 @@ function App() {
     };
 
     // Close dropdown when clicking outside
-    React.useEffect(() => {
+    useEffect(() => {
         function handleClickOutside(event) {
             if (showSampleDropdown && !event.target.closest('.hero-button')) {
                 setShowSampleDropdown(false);

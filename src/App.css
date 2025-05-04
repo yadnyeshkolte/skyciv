@@ -37,7 +37,6 @@ body, html {
     align-items: center;
     padding: 15px 40px;
     background-color: rgba(50, 50, 50, 0.85);
-
     position: fixed;
     top: 0;
     left: 0;
@@ -47,7 +46,8 @@ body, html {
 
 .skyciv-logo img {
     height: 30px;
-    content: url('./assets/skyciv-logo.png'); /* Use content property as a fallback */
+    /* Fix for the logo path issue */
+    content: url('./assets/skyciv-logo.png'); /* Fallback if direct src fails */
 }
 
 .skyciv-nav ul {
@@ -135,13 +135,19 @@ body, html {
     line-height: 1.5;
 }
 
-.hero-button {
+/* Fix for the hero buttons layout */
+.hero-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-bottom: 3rem;
     position: relative;
-    display: inline-block;
+    align-items: center; /* Keep buttons aligned */
 }
 
 .hero-button {
     position: relative;
+    min-width: 200px; /* Set a minimum width for consistency */
 }
 
 .skyciv-primary-btn {
@@ -157,23 +163,26 @@ body, html {
     display: flex;
     align-items: center;
     gap: 8px;
+    width: 100%; /* Full width of parent */
+    justify-content: center;
 }
 
 .skyciv-primary-btn:hover {
     background-color: #2563EB;
 }
 
-/* Sample Models Dropdown */
+/* Sample Models Dropdown - Fix position */
 .sample-dropdown-menu {
     position: absolute;
-    top: calc(100% + 8px); /* Position below the button with a small gap */
+    top: 100%;
     left: 0;
     width: 100%;
     min-width: 220px;
     color: #333;
     background-color: white;
     border-radius: 4px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    margin-top: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     z-index: 10;
     max-height: 250px;
     overflow-y: auto;
@@ -261,11 +270,13 @@ body, html {
     -webkit-text-stroke: 1px #FF9800;
 }
 
-.upload-section {
-    width: 100%; /* Full width of its container */
-    height: auto; /* Auto height */
-    margin-top: 0; /* Remove margin-top */
+.upload-section-fullscreen {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
+
 .App-footer {
     margin-top: 2rem;
     color: #666;
@@ -362,9 +373,10 @@ body, html {
 }
 
 .upload-section {
-    width: 50%;
-    height: 10%;
-    margin-top: auto;
+    width: 100%; /* Full width of its container */
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 /* Model Viewer Styles (preserved from original) */
@@ -413,16 +425,10 @@ body, html {
 
 /* Error message (preserved from original) */
 .error-message {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: rgba(255, 0, 0, 0.1);
-    padding: 20px;
-    border-radius: 8px;
-    color: red;
+    margin-top: 12px;
+    color: #e53935;
+    font-size: 14px;
     text-align: center;
-    max-width: 80%;
 }
 
 /* Viewer controls (preserved from original) */
@@ -446,54 +452,81 @@ body, html {
     display: none;
 }
 
-/* File Upload Styling (preserved from original) */
+/* File Upload Styling - fixed for better integration */
 .upload-container {
     width: 100%;
 }
+
 .dropzone {
-    border: 2px dashed #ccc;
+    border: 2px solid #3B82F6;
     border-radius: 4px;
-    padding: 12px 24px;
+    padding: 12px 20px;
     text-align: center;
-    background-color: white;
+    background-color: #3B82F6;
     transition: all 0.3s ease;
     cursor: pointer;
-    min-height: unset;
+    min-height: 44px; /* Match height of sample model button */
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
-    height: 46px; /* Match the height of the Select Sample Model button */
+    gap: 10px;
+    color: white;
 }
+
 .dropzone.active {
-    border-color: #4285F4;
-    background-color: rgba(66, 133, 244, 0.05);
+    background-color: #2563EB;
+    border-color: #2563EB;
+}
+
+.upload-content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: auto;
 }
 
 .upload-icon {
-    display: none;
+    color: white;
+    margin-bottom: 0;
 }
 
 .upload-text {
     font-size: 16px;
-    color: #333;
-    margin: 0;
     font-weight: 600;
+    margin: 0;
+    color: white;
 }
+
+.upload-progress {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .progress-container {
     width: 100%;
-    height: 20px;
+    height: 8px;
     background-color: #f0f0f0;
-    border-radius: 10px;
+    border-radius: 4px;
     overflow: hidden;
-    margin-bottom: 16px;
+    margin-top: 8px;
 }
 
 .progress-bar {
     height: 100%;
     background-color: #4285F4;
-    border-radius: 10px;
+    border-radius: 4px;
     transition: width 0.3s ease;
+}
+
+.upload-progress-text {
+    font-size: 14px;
+    color: white;
+    margin: 4px 0 0 0;
 }
 
 /* Responsive Design */
@@ -533,11 +566,8 @@ body, html {
     }
 
     .hero-buttons {
-        display: flex;
-        justify-content: center;
-        gap: 1.5rem;
-        margin-bottom: 3rem;
-        align-items: flex-start; /* Align items at the top */
+        flex-direction: column;
+        gap: 1rem;
     }
 
     .features-section {
@@ -551,12 +581,11 @@ body, html {
     }
 
     .upload-text {
-        font-size: 1rem;
+        font-size: 15px;
     }
 
     .dropzone {
-        padding: 30px 20px;
-        min-height: 200px;
+        padding: 10px 16px;
     }
 
     .new-upload-button {
@@ -608,10 +637,5 @@ body, html {
 
     .App-header p {
         font-size: 1rem;
-    }
-
-    .dropzone {
-        padding: 20px 15px;
-        min-height: 180px;
     }
 }
